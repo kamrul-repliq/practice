@@ -32,7 +32,7 @@ class Book(BaseModel):
 
     title = models.CharField(max_length=100)
     author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    pub_date = models.DateField(auto_now_add=True)
+    published_date = models.DateField(auto_now_add=True)
     slug = AutoSlugField(populate_from="title")
 
     def __str__(self):
