@@ -22,3 +22,13 @@ class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
         fields = ["title", "author", "slug", "published_date"]
+
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+    #     representation["author"] = {"name": representation["author"]}
+    #     return representation
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation["author"] = {"Author Name": representation["author"]}
+        return representation
