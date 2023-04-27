@@ -5,10 +5,12 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 
-from demo.models import Author, Book
+from demo.models import Author, Book, Album, Track
 from demo.serializers import (
+    AlbumSerializer,
     AuthorSerializer,
     BookSerializer,
+    TrackSerializer,
 )
 
 
@@ -85,3 +87,30 @@ class BookDetail(RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.filter()
     serializer_class = BookSerializer
     lookup_field = "slug"
+
+
+class AlbumList(ListCreateAPIView):
+    queryset = Album.objects.filter()
+    serializer_class = AlbumSerializer
+
+
+class AlbumDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Album.objects.filter()
+    serializer_class = AlbumSerializer
+    lookup_field = "uid"
+
+
+class TrackList(ListCreateAPIView):
+    queryset = Track.objects.filter()
+    serializer_class = TrackSerializer
+    lookup_field = "uid"
+
+    def get_queryset(self):
+        uid = self.kwargs.get("uid")
+        return Track.objects.filter(album__uid=uid)
+
+
+class TrackDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Track.objects.filter()
+    serializer_class = TrackSerializer
+    lookup_field = "uid"

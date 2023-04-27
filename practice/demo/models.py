@@ -37,3 +37,28 @@ class Book(BaseModel):
 
     def __str__(self):
         return self.title
+
+
+class Album(BaseModel):
+    """Models for album."""
+
+    album_name = models.CharField(max_length=100)
+    artist = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.album_name
+
+
+class Track(BaseModel):
+    """Tracks of album"""
+
+    album = models.ForeignKey(Album, related_name="tracks", on_delete=models.CASCADE)
+    order = models.IntegerField()
+    title = models.CharField(max_length=100)
+    duration = models.IntegerField()
+
+    class Meta:
+        ordering = ["order"]
+
+    def __str__(self):
+        return f"{self.order}, {self.title} duration: {self.duration}"

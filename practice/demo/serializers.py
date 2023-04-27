@@ -1,7 +1,7 @@
 """Serializers for our models."""
 
 from rest_framework import serializers
-from demo.models import Author, Book
+from demo.models import Author, Book, Album, Track
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -32,3 +32,21 @@ class BookSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
         representation["author"] = {"Author Name": representation["author"]}
         return representation
+
+
+class AlbumSerializer(serializers.ModelSerializer):
+    """Album Serializer."""
+
+    tracks = serializers.StringRelatedField(many=True)
+
+    class Meta:
+        model = Album
+        fields = ["uid", "album_name", "artist", "tracks"]
+
+
+class TrackSerializer(serializers.ModelSerializer):
+    """Serializer for tracks."""
+
+    class Meta:
+        model = Track
+        fields = "__all__"
