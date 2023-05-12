@@ -5,12 +5,13 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 
-from demo.models import Author, Book, Album, Track
+from demo.models import Author, Book, Album, Track, Profile
 from demo.serializers import (
     AlbumSerializer,
     AuthorSerializer,
     BookSerializer,
     TrackSerializer,
+    ProfileSerializer,
 )
 
 
@@ -113,4 +114,15 @@ class TrackList(ListCreateAPIView):
 class TrackDetail(RetrieveUpdateDestroyAPIView):
     queryset = Track.objects.filter()
     serializer_class = TrackSerializer
+    lookup_field = "uid"
+
+
+class ProfileList(ListCreateAPIView):
+    queryset = Profile.objects.filter()
+    serializer_class = ProfileSerializer
+
+
+class ProfileDetail(RetrieveUpdateDestroyAPIView):
+    queryset = Profile.objects.filter()
+    serializer_class = ProfileSerializer
     lookup_field = "uid"

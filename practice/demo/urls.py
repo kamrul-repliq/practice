@@ -9,4 +9,6 @@ urlpatterns = [
     path("albums/", views.AlbumList.as_view(), name="albums"),
     path("albums/<uid>/", views.AlbumDetail.as_view(), name="album-details"),
     path("albums/<uid>/tracks/", views.TrackList.as_view(), name="tracks"),
+    path("profile", views.ProfileList.as_view(), name="profile"),
+    path("profile/<uuid:uid>/", views.ProfileDetail.as_view(), name="profile-detail"),
 ]

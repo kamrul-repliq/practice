@@ -1,7 +1,8 @@
 """Serializers for our models."""
 
 from rest_framework import serializers
-from demo.models import Author, Book, Album, Track
+from versatileimagefield.serializers import VersatileImageFieldSerializer
+from demo.models import Author, Book, Album, Track, Profile
 
 
 class AuthorSerializer(serializers.ModelSerializer):
@@ -50,3 +51,20 @@ class TrackSerializer(serializers.ModelSerializer):
     class Meta:
         model = Track
         fields = "__all__"
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    """Serializer for Profile"""
+
+    # image = VersatileImageFieldSerializer(
+    #     sizes=[
+    #         ("original", "url"),
+    #         ("at300x300", "crop__300x300"),
+    #         ("at500x500", "crop__500x500"),
+    #     ],
+    #     required=False,
+    # )
+
+    class Meta:
+        model = Profile
+        fields = ("uid", "name", "image")

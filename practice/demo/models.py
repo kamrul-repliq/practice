@@ -1,6 +1,7 @@
 from django.db import models
 from uuid import uuid4
 from autoslug import AutoSlugField
+from versatileimagefield.fields import VersatileImageField
 
 
 # Create your models here.
@@ -15,6 +16,29 @@ class BaseModel(models.Model):
 
     class Meta:
         abstract = True
+
+
+class Profile(BaseModel):
+    """Profile Model."""
+
+    name = models.CharField("Name", max_length=100)
+    image = VersatileImageField(
+        "Image", upload_to="images/", width_field="width", height_field="height"
+    )
+    width = models.PositiveIntegerField(
+        "Image Width",
+        blank=True,
+        null=True,
+    )
+    height = models.PositiveIntegerField(
+        "Image Height",
+        blank=True,
+        null=True,
+    )
+
+    class Meta:
+        verbose_name = "Image Example"
+        verbose_name_plural = "Image Examples"
 
 
 class Author(BaseModel):
