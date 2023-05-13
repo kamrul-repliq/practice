@@ -1,5 +1,5 @@
 """Serializers for our models."""
-
+from django.urls import reverse
 from rest_framework import serializers
 from versatileimagefield.serializers import VersatileImageFieldSerializer
 from demo.models import Author, Book, Album, Track, Profile
@@ -56,15 +56,20 @@ class TrackSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     """Serializer for Profile"""
 
-    # image = VersatileImageFieldSerializer(
-    #     sizes=[
-    #         ("original", "url"),
-    #         ("at300x300", "crop__300x300"),
-    #         ("at500x500", "crop__500x500"),
-    #     ],
-    #     required=False,
-    # )
+    image = VersatileImageFieldSerializer(
+        sizes=[
+            ("original", "url"),
+            ("at300x300", "crop__300x300"),
+            ("at500x500", "crop__500x500"),
+        ],
+        required=False,
+    )
+
+    url = serializers.SerializerMethodField()
+
+    def get_url(self, obj):
+        return reverse("demo:profile-detail", args=[obj.uid])
 
     class Meta:
         model = Profile
-        fields = ("uid", "name", "image")
+        fields = ("uid", "name", "image", "url")
