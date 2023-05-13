@@ -68,6 +68,11 @@ class ProfileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
 
     def get_url(self, obj):
+        request = self.context.get("request")
+        if request is not None:
+            return request.build_absolute_uri(
+                reverse("demo:profile-detail", args=[obj.uid])
+            )
         return reverse("demo:profile-detail", args=[obj.uid])
 
     class Meta:
