@@ -32,6 +32,8 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "versatileimagefield",
     "celery_learn",
+    "django_celery_results",
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -121,6 +123,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+APPEND_SLASH = False
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
@@ -171,3 +175,17 @@ VERSATILEIMAGEFIELD_SETTINGS = {
     # here: https://optimus.io/support/progressive-jpeg/
     "progressive_jpeg": False,
 }
+
+# CELERY SETTINGS
+
+CELERY_BROKER_URL = "redis://127.0.0.1:6379"
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "Asia/Dhaka"
+
+# To store celery result in django db install django_celery_results
+CELERY_RESULT_BACKEND = "django-db"
+
+# Celery Beat Settings
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
