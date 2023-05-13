@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "celery_learn",
     "django_celery_results",
     "django_celery_beat",
+    "send_email",
 ]
 
 MIDDLEWARE = [
@@ -189,3 +190,13 @@ CELERY_RESULT_BACKEND = "django-db"
 
 # Celery Beat Settings
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+# Email Settings
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "softdevkamrul@gmail.com"
+EMAIL_HOST_PASSWORD = "fkckstqgspengmru"
+DEFAULT_FROM_EMAIL = "Celery <softdevkamrul@gmail.com>"
