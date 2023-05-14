@@ -33,11 +33,21 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "django_celery_results",
     "django_celery_beat",
+    "django_elasticsearch_dsl",
+    "django_elasticsearch_dsl_drf",
+    "elastic",
     "rest_framework",
     "redis_caching",
     "send_email",
     "versatileimagefield",
 ]
+
+#ELASTICSEARCH_DSL
+ELASTICSEARCH_DSL = {
+    'default':{
+        "host":'127.0.0.1:9200/'
+    }
+}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
