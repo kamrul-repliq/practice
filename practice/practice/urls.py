@@ -39,6 +39,7 @@ urlpatterns = [
     path("api/v1/", include("demo.urls")),
     path("celery", include("celery_learn.urls")),
     path("mail", include("send_email.urls")),
+    path("redis-caching",include('redis_caching.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 if settings.DEBUG:

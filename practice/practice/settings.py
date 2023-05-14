@@ -28,14 +28,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "drf_yasg",
-    "demo",
-    "rest_framework",
-    "debug_toolbar",
-    "versatileimagefield",
     "celery_learn",
+    "demo",
+    "debug_toolbar",
     "django_celery_results",
     "django_celery_beat",
+    "rest_framework",
+    "redis_caching",
     "send_email",
+    "versatileimagefield",
 ]
 
 MIDDLEWARE = [
@@ -110,6 +111,16 @@ TIME_ZONE = "Asia/Dhaka"
 USE_I18N = True
 
 USE_TZ = True
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        }
+    }
+}
 
 
 # Static files (CSS, JavaScript, Images)
