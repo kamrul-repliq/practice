@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 #ELASTICSEARCH_DSL
 ELASTICSEARCH_DSL = {
     'default':{
-        "host":'127.0.0.1:9200/'
+        "hosts":'127.0.0.1:9200/'
     }
 }
 
