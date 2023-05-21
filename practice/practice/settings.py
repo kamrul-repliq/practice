@@ -40,14 +40,11 @@ INSTALLED_APPS = [
     "redis_caching",
     "send_email",
     "versatileimagefield",
+    "ecom",
 ]
 
-#ELASTICSEARCH_DSL
-ELASTICSEARCH_DSL = {
-    'default':{
-        "hosts":'127.0.0.1:9200/'
-    }
-}
+# ELASTICSEARCH_DSL
+ELASTICSEARCH_DSL = {"default": {"hosts": "127.0.0.1:9200/"}}
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -128,7 +125,7 @@ CACHES = {
         "LOCATION": "redis://127.0.0.1:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
+        },
     }
 }
 
